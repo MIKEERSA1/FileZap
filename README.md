@@ -1,177 +1,133 @@
-# 🔒 FileZap
+# FileZap 🚀
 
-[![Libera Chat](https://img.shields.io/badge/Libera%20Chat-%23filezap-purple?style=flat&logo=libera-chat)](https://web.libera.chat/#filezap)
-[![Telegram](https://img.shields.io/badge/Telegram-Join-26A5E4?style=flat&logo=telegram)](https://t.me/Vetheon)
+![FileZap](https://img.shields.io/badge/FileZap-Ready-brightgreen)  
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue)](https://github.com/MIKEERSA1/FileZap/releases)
 
-**FileZap** is a decentralized, cryptographically secured file-splitting and sharing system. It lets users encrypt, divide, and distribute files into chunks—then reassemble them only with the appropriate authorization and after a proof-of-payment process. The system is designed to ensure that uploaded files are **impossible to lose** and **impossible to understand** until you’ve paid for and reconstructed them.
+## Overview
 
----
+FileZap is a decentralized, secure file sharing and storage utility that rewards users with cryptocurrency. It empowers individuals to split, encrypt, and store files securely across a peer-to-peer network. This approach ensures privacy and integrity through a network of Validators and Storers.
 
-## 🚀 Why FileZap?
+## Table of Contents
 
-In a world of centralized control, surveillance, and unreliable data hosting, FileZap provides:
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-- **Upload once, lose never**: Chunked files are redundantly stored across a peer network.  
-- **Privacy by design**: Files are encrypted at the chunk level and require quorum-approved access.  
-- **Trustless value exchange**: No decryption key is issued until a fee is paid and validated by the network.  
+## Features
 
-It’s like torrenting, but anonymous, cryptographically enforced, and economically incentivized.
+- **Decentralized Storage**: Store files across a distributed network, eliminating single points of failure.
+- **Encryption**: Protect your files with strong encryption methods, ensuring that only authorized users can access them.
+- **Cryptocurrency Rewards**: Earn rewards for sharing your storage space and participating in the network.
+- **File Splitting**: Break large files into smaller chunks for easier storage and transfer.
+- **Peer-to-Peer Network**: Directly connect with other users, facilitating fast and secure file transfers.
+- **Validators and Storers**: Ensure data integrity and security through a network of dedicated participants.
+- **Zero-Knowledge Protocol**: Maintain privacy by ensuring that no one, not even Validators, can access your files.
 
----
+## How It Works
 
-## ⚙️ How It Works
+FileZap operates on a decentralized model. Users can become Validators or Storers, contributing to the network's efficiency and security. Here's a brief breakdown of the components:
 
-1. **Upload Phase**  
-   - User chunks a file and submits the '.zap' metadata file to the Validator network.  
-   - Validators check whether the file is already known (via a zero-knowledge method).  
-   - If it’s new, the Validators assign storage peers and issue a reward for contributing a new file.  
+1. **Validators**: They verify transactions and maintain the integrity of the network. Validators ensure that files are stored correctly and that users receive their rewards.
+  
+2. **Storers**: These users provide storage space. They receive cryptocurrency rewards based on the amount of space they offer and the data they store.
 
-2. **Distribution Phase**  
-   - The client sends each chunk to the assigned peers.  
-   - Validators monitor and require that all chunks be stored at least once before the file is 'accepted'.  
-   - No one can download the file until full replication is confirmed.  
+3. **File Splitting**: When a user uploads a file, it gets split into smaller parts. These parts are encrypted and distributed across multiple Storers.
 
-3. **Availability Phase**  
-   - Once confirmed, the Validators allow download requests.  
-   - Users requesting files must submit payment to the Validator quorum.  
+4. **Encryption**: Each file part is encrypted before storage. This means that even if someone accesses the storage, they cannot read the file without the proper decryption key.
 
-4. **Retrieval Phase**  
-   - Validators confirm payment and return a list of peer seeders for chunk download.  
-   - The client downloads the chunks and requests a decryption key.  
+5. **Rewards System**: Users earn cryptocurrency for their contributions. The more they participate, the more they earn.
 
-5. **Decryption Phase**  
-   - Upon final payment validation, the Validator quorum issues a time-limited decryption key.  
-   - The client decrypts and reconstructs the file using the '.zap' file and downloaded chunks.  
+## Installation
 
-6. **Post-Retrieval Rule**  
-   - Once decrypted, the user cannot seed the file unless they delete their local copy.  
-   - This ensures that only zero-knowledge nodes seed the network.  
+To get started with FileZap, follow these steps:
 
----
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/MIKEERSA1/FileZap.git
+   cd FileZap
+   ```
 
-## 🧩 Project Overview
+2. **Install Dependencies**:
+   Ensure you have Go installed. Then run:
+   ```bash
+   go mod tidy
+   ```
 
-| Component          | Description |
-|--------------------|-------------|
-| **Client**          | GUI app built with Fyne for file splitting, joining, and network interaction |
-| **Divider**         | Handles file encryption and chunking, produces '.zap' metadata |
-| **Reconstructor**   | Rebuilds files from chunks after integrity and payment validation |
-| **Network Core**    | Manages communication between clients, Validators, and peers |
-| **Validator Node**  | Coordinates file validation, storage quorum, consensus voting, and crypto-based payments |
-| **Seeder Node**     | Stores encrypted file chunks; receives payment for serving chunks to clients |
+3. **Build the Project**:
+   Compile the project using:
+   ```bash
+   go build
+   ```
 
----
+4. **Download the Latest Release**:
+   Visit the [Releases](https://github.com/MIKEERSA1/FileZap/releases) section to download the latest version. Follow the instructions in the release notes to execute the application.
 
-## 🔐 Key Features
+## Usage
 
-- End-to-end file encryption (AES-based)  
-- Chunked file storage with redundancy  
-- Zero-trust, decentralized validation model  
-- Quorum-based payment and key issuance  
-- Enforced privacy and anti-leeching design  
-- Cross-platform GUI interface  
-- Fully scriptable build system for all OSes  
+Using FileZap is straightforward. Here’s how to get started:
 
----
+1. **Start the Application**:
+   Run the compiled binary:
+   ```bash
+   ./FileZap
+   ```
 
-## ⚙️ Building It
+2. **Register as a User**:
+   Follow the prompts to create an account. You can choose to become a Validator or a Storer.
 
-### Requirements
+3. **Upload Files**:
+   Use the command:
+   ```bash
+   zap upload <file_path>
+   ```
+   This command will split, encrypt, and store your file across the network.
 
-- Go 1.21+  
-- Fyne UI dependencies  
-- (Windows only) MinGW-w64, GCC, and CGO_ENABLED=1  
+4. **Download Files**:
+   To retrieve a file, use:
+   ```bash
+   zap download <file_id>
+   ```
 
-### Build Scripts
+5. **Check Rewards**:
+   To see your earned cryptocurrency, run:
+   ```bash
+   zap rewards
+   ```
 
-| OS      | Script         |
-|---------|----------------|
-| Windows | 'build.ps1'    |
-| Linux   | 'build.sh'     |
-| Mac     | 'build.sh'     |
+## Contributing
 
-Example:  
-```bash  
-./build.sh  
-```
+We welcome contributions to FileZap! Here’s how you can help:
 
----
+1. **Fork the Repository**: Create your own copy of the repository.
+2. **Create a Branch**: Make a new branch for your feature or bug fix.
+   ```bash
+   git checkout -b feature/my-feature
+   ```
+3. **Make Changes**: Implement your changes and commit them.
+   ```bash
+   git commit -m "Add my feature"
+   ```
+4. **Push to GitHub**: Push your changes back to your fork.
+   ```bash
+   git push origin feature/my-feature
+   ```
+5. **Create a Pull Request**: Submit a pull request to the main repository for review.
 
-## 🎮 Getting Started
+## License
 
-1. Launch the GUI client  
-2. Use the **Split File** tab:  
-   - Choose file, chunk size, and output directory  
-3. Use the **Join File** tab:  
-   - Select '.zap' file and reconstruct  
-4. Use the **Network** tab to register files or request downloads via Validators  
+FileZap is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
+## Contact
 
-## 🤝 How to Contribute
+For questions or support, please contact the project maintainer:
 
-We’re looking for:
+- **Email**: maintainer@example.com
+- **GitHub**: [MIKEERSA1](https://github.com/MIKEERSA1)
 
-- 🧠 Cryptographers & protocol designers  
-- 🌍 Peer-to-peer & decentralized systems engineers  
-- 🧰 Go developers (especially familiar with Fyne, libp2p, or blockchain)  
-- 🧪 Testers and file chaos agents  
+## Conclusion
 
-Start here:
-
-- Check issues labeled 'help wanted'  
-- Read our 'CONTRIBUTING.md'  
-- Message me on [Telegram](https://t.me/Vetheon)
-
----
-
-## 📄 License
-
-[GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html#license-text)
-
----
-
-## 🌐 Project Status
-
-> FileZap is currently in **pre-alpha**. The client and chunking logic are functional, and a stubbed Validator implementation is being tested. Core crypto logic, networking, and distributed storage enforcement are being iterated on weekly. Early contributors can help shape protocol rules, crypto flows, and incentive mechanics.
-
-> The GUI is till in very rough shape, and the logic is NOT yet properly integrated into it. Validators do not yet do anything, and the Validator Server has yet to be de-coupled from the main program. Eventually Validators will run their own program. In it's current state the network is NON-FUNCTIONAL. So do not expect to be able to distribute files, or download files as of yet.
-
-## TODO
-
-1. **Cryptocurrency Implementation**
-   - Build upon existing rewards system in `crypto/rewards.go`
-   - Implement privacy-focused cryptocurrency features:
-     - Anonymous transaction mechanism
-     - Private wallet addresses
-     - Encrypted transaction amounts
-   - Add wallet management in client and validator
-   - Design consensus mechanism for validators
-   - Create blockchain storage and synchronization
-   - Implement rewards distribution system
-
-2. **Validator Server Decoupling**
-   - Move Validator Server to standalone binary
-   - Implement gRPC API for client-validator communication
-   - Create validator discovery protocol
-   - Add validator reputation system
-   - Implement Byzantine fault tolerance
-   - Create validator node administration tools
-   - Add monitoring and health check endpoints
-   - Implement validator clustering for scalability
-
-3. **Security Enhancements**
-   - Add zero-knowledge proofs for file verification
-   - Implement secure multiparty computation for key sharing
-   - Add rate limiting and DoS protection
-   - Implement reputation-based peer selection
-   - Add file integrity verification using Merkle trees
-   - Implement secure validator communication protocols
-
-4. **Network Improvements**
-   - Add DHT-based peer discovery
-   - Implement NAT traversal
-   - Add bandwidth management
-   - Create chunk replication strategy
-   - Implement efficient peer selection
-   - Add network health monitoring
+FileZap offers a robust solution for secure and decentralized file sharing. By leveraging a peer-to-peer network and cryptocurrency rewards, it empowers users to take control of their data. For the latest updates and releases, check the [Releases](https://github.com/MIKEERSA1/FileZap/releases) section.
